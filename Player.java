@@ -1,11 +1,12 @@
 
+
 import java.util.Scanner;
 
-public class Player {
-	private String name;
-	private Board board;
-	private Player opponent;
-	private char mark;
+abstract public class Player {
+	protected String name;
+	protected Board board;
+	protected Player opponent;
+	protected char mark;
 	
 	/**
 	 * 
@@ -24,7 +25,7 @@ public class Player {
 	 * then it continues the game by recalling this function and passing the turn over to the opposing player.
 	 * 
 	 */
-	public void play() {
+	protected void play() {
 
 		makeMove();	
 		board.display();
@@ -54,48 +55,13 @@ public class Player {
 	 * to mark that move onto the board. The method makes sure that the player is not entering invalid rows or columns
 	 * as well as makes sure that the move that they enter has not already been used prior.
 	 */
-	public void makeMove() {
-		int row, column;
-		
-		while(true) {
-			while(true) {
-		    	System.out.println(name + ", what row should your next " + mark + " be placed in?");
-				Scanner scanRow = new Scanner(System.in);
-		    	row = scanRow.nextInt();
-		    	
-		    	if (row < 0 || row > 2)
-		    		System.out.println("Invalid entry, try again.");
-		    	else
-		    		break;
-			}
-	
-			while(true) {
-		    	System.out.println(name + ", what column should your next " + mark + " be placed in?");
-				Scanner scanColumn = new Scanner(System.in);
-		    	column = scanColumn.nextInt();
-		    	
-		    	if (column < 0 || column > 2)
-		    		System.out.println("Invalid entry, try again.");
-		    	else
-		    		break;
-			}
-	
-	    	if (board.getMark(row, column) != ' ') {
-	    		System.out.println("Sorry, this spot has already been taken. Try again.");
-	    	}
-	    	else
-	    		break;
-		}
-		
-    	board.addMark(row, column, mark);
-    	
-	}
+	protected abstract void makeMove(); 
 	
 	/**
 	 * This is the setter for private data member opponent
 	 * @param p This is the parameter that sets the private data member opponent
 	 */
-	public void setOpponent(Player p) {
+	protected void setOpponent(Player p) {
 		opponent = p;
 	}
 	
@@ -103,7 +69,7 @@ public class Player {
 	 * This is the setter for private data member board
 	 * @param theBoard This is the parameter that sets the private data member board
 	 */
-	public void setBoard(Board theBoard) {
+	protected void setBoard(Board theBoard) {
 		board = theBoard;
 	}
 }

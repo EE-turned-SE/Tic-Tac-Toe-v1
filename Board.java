@@ -19,6 +19,10 @@ public class Board implements Constants {
 		}
 	}
 
+	public void decrementMarkCount(int row, int col) {
+		theBoard[row][col] = SPACE_CHAR;
+		markCount--;
+	}
 	/**
 	 * This method is used to get the type of mark that is present in the row and column specified of the board
 	 * @param row This parameter is used to check for the row of the board
